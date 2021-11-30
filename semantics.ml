@@ -1,10 +1,11 @@
 open Ast
 open Ast.IR
-open Baselib
+(* open Baselib *)
 
 exception Error of string * Lexing.position
 
-let rec analyze_expr expr env =
+(* rec, env *)
+let analyze_expr expr _ =
   match expr with
   | Syntax.Int n -> Int n.value
 
