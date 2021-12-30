@@ -1,9 +1,11 @@
 %{
-  (* open Ast *)
   open Ast.Syntax
 %}
 
 %token <int> Lint
+%token <bool> Lbol
+%token <string> Lstr
+%token Lvid
 %token Lend
 
 %start prog
@@ -17,7 +19,21 @@ prog:
 ;
 
 expr:
-| n = Lint {
-  Int { value = n ; pos = $startpos(n) }
+| v = value {
+  Val { value = v ; pos = $startpos(v) }
 }
 ;
+
+value:
+| n = Lint {
+  Int n
+}
+| b = Lbol {
+  Bol b
+}
+| Lvid {
+  Vid
+}
+| s = Lstr {
+  Str s
+}
